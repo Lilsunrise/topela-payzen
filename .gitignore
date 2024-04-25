@@ -1,0 +1,10 @@
+# Fichiers temporaires
+*.tmp
+*.log
+
+# Répertoires
+__pycache__/
+node_modules/
+
+#Environements virtuel
+.env/
