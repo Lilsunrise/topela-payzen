@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from PayZenFormToolBox import PayZenFormToolBox
+from .PayZenFormToolBox import PayZenFormToolBox
 import calendar
 import time
 import logging
@@ -12,7 +12,7 @@ logger = logging.getLogger()
 payzenTB = PayZenFormToolBox(
     '28321394',  # shopId
     'JTa3Ix5RxInDOD2P',  # certificate, TEST-version
-    # '[***CHANGE-ME***]',  # certificate, PRODUCTION-version
+    '[***CHANGE-ME***]',  # certificate, PRODUCTION-version
     'TEST',               # TEST-mode toggle
     logger                # logger object the toolbox must use
 )

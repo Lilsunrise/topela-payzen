@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+</head>
+<body>
+    <h1>Payment Request</h1>
+    <form method="POST" action="{{ payment_request.vads_payment_url }}">
+        <!-- Add payment form fields here -->
+        {% csrf_token %}
+        <input type="submit" value="Pay">
+    </form>
+</body>
+</html>
