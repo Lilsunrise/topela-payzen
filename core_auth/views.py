@@ -10,17 +10,17 @@ import logging
 logger = logging.getLogger()
 
 payzenTB = PayZenFormToolBox(
-    '28321394',  # shopId
-    'JTa3Ix5RxInDOD2P',  # certificate, TEST-version
-    '[***CHANGE-ME***]',  # certificate, PRODUCTION-version
+    '15302382',  # shopId
+    'h38uqSOfPrF1xtZd',  # certificate, TEST-version
+    '',  # certificate, PRODUCTION-version
     'TEST',               # TEST-mode toggle
     logger                # logger object the toolbox must use
 )
 
-ipn_url = '/form_ipn/'
+ipn_url = 'https://lilsunrise.pythonanywhere.com/core_auth/form_ipn/'
 payzenTB.ipn_url = ipn_url
 
-return_url = '/return_from_payment/'
+return_url = 'https://lilsunrise.pythonanywhere.com/core_auth/return_from_payment/'
 payzenTB.return_url = return_url
 
 def form_payment(request):
@@ -45,18 +45,15 @@ def form_ipn(request):
 def return_from_payment(request):
     return HttpResponse("Welcome back, dear Customer!")
 
-def test_transaction(request):
-    # Générer un ID de transaction unique
-    trans_id = str(calendar.timegm(time.gmtime()))[-6:]
 
-    # Données de paiement fictives
-    amount = 1000  # Montant du paiement
-    currency = 978  # Code de la devise
 
-    # Créer un formulaire de paiement avec les données fictives
-    form = payzenTB.form(trans_id, amount, currency)
+from django.shortcuts import render
 
-    # Simuler l'envoi des données à l'API de PayZen (c'est ici que tu enverrais réellement les données)
+def success_view(request):
+    return render(request, 'success.html')
 
-    # Retourner une réponse JSON avec le formulaire de paiement
-    return JsonResponse({'form': form})
+def error_view(request):
+    return render(request, 'error.html')
+
+def cancel_view(request):
+    return render(request, 'cancel.html')

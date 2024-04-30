@@ -140,7 +140,8 @@ class PayZenFormToolBox:
         for key in sorted(fields):
             data.append(str(fields[key]))
         data.append(self.account['cert'][self.account['mode']])
-        return hashlib.sha1('+'.join(data)).hexdigest()
+        return hashlib.sha1('+'.join(data).encode('utf-8')).hexdigest()
+   
 
 
     @csrf_exempt
